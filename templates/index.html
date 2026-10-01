@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <title>Hospital Appointment Management System</title>
+
+    <style>
+
+        body {
+
+            font-family: Arial, sans-serif;
+
+            background: #f1f5f9;
+
+            margin: 0;
+
+            padding: 30px;
+
+        }
+
+        .container {
+
+            max-width: 1100px;
+
+            margin: auto;
+
+            background: white;
+
+            padding: 30px;
+
+            border-radius: 12px;
+
+        }
+
+        h1 {
+
+            text-align: center;
+
+            margin-bottom: 30px;
+
+        }
+
+        h2 {
+
+            margin-top: 25px;
+
+        }
+
+        form {
+
+            display: grid;
+
+            gap: 12px;
+
+            margin-bottom: 35px;
+
+        }
+
+        input,
+
+        select {
+
+            padding: 12px;
+
+            font-size: 15px;
+
+            border: 1px solid #ccc;
+
+            border-radius: 5px;
+
+        }
+
+        button {
+
+            padding: 12px;
+
+            background: #2563eb;
+
+            color: white;
+
+            border: none;
+
+            border-radius: 5px;
+
+            cursor: pointer;
+
+            font-size: 15px;
+
+        }
+
+        table {
+
+            width: 100%;
+
+            border-collapse: collapse;
+
+        }
+
+        th,
+
+        td {
+
+            padding: 12px;
+
+            border: 1px solid #ddd;
+
+            text-align: center;
+
+        }
+
+        th {
+
+            background: #2563eb;
+
+            color: white;
+
+        }
+
+        .delete {
+
+            color: red;
+
+            text-decoration: none;
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>🏥 Hospital Appointment Management System</h1>
+
+    <h2>Book Appointment</h2>
+
+    <form action="/add" method="POST">
+
+        <input
+
+            type="text"
+
+            name="patient_name"
+
+            placeholder="Patient Name"
+
+            required
+
+        >
+
+        <select name="doctor" required>
+
+            <option value="">Select Doctor</option>
+
+            <option value="Dr. Sharma">
+
+                Dr. Sharma
+
+            </option>
+
+            <option value="Dr. Mehta">
+
+                Dr. Mehta
+
+            </option>
+
+            <option value="Dr. Patel">
+
+                Dr. Patel
+
+            </option>
+
+            <option value="Dr. Khan">
+
+                Dr. Khan
+
+            </option>
+
+        </select>
+
+        <select name="department" required>
+
+            <option value="">Select Department</option>
+
+            <option value="Cardiology">
+
+                Cardiology
+
+            </option>
+
+            <option value="Orthopedics">
+
+                Orthopedics
+
+            </option>
+
+            <option value="General Medicine">
+
+                General Medicine
+
+            </option>
+
+            <option value="Dermatology">
+
+                Dermatology
+
+            </option>
+
+            <option value="Pediatrics">
+
+                Pediatrics
+
+            </option>
+
+        </select>
+
+        <input
+
+            type="date"
+
+            name="appointment_date"
+
+            required
+
+        >
+
+        <input
+
+            type="tel"
+
+            name="phone"
+
+            placeholder="Patient Phone Number"
+
+            required
+
+        >
+
+        <button type="submit">
+
+            Book Appointment
+
+        </button>
+
+    </form>
+
+    <h2>Appointments</h2>
+
+    <table>
+
+        <tr>
+
+            <th>ID</th>
+
+            <th>Patient</th>
+
+            <th>Doctor</th>
+
+            <th>Department</th>
+
+            <th>Date</th>
+
+            <th>Phone</th>
+
+            <th>Action</th>
+
+        </tr>
+
+        {% for appointment in appointments %}
+
+        <tr>
+
+            <td>
+
+                {{ appointment.id }}
+
+            </td>
+
+            <td>
+
+                {{ appointment.patient_name }}
+
+            </td>
+
+            <td>
+
+                {{ appointment.doctor }}
+
+            </td>
+
+            <td>
+
+                {{ appointment.department }}
+
+            </td>
+
+            <td>
+
+                {{ appointment.appointment_date }}
+
+            </td>
+
+            <td>
+
+                {{ appointment.phone }}
+
+            </td>
+
+            <td>
+
+                <a
+
+                    class="delete"
+
+                    href="/delete/{{ appointment.id }}"
+
+                >
+
+                    Delete
+
+                </a>
+
+            </td>
+
+        </tr>
+
+        {% endfor %}
+
+    </table>
+
+</div>
+
+</body>
+
+</html>
